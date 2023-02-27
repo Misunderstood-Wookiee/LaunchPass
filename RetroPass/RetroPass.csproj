@@ -175,6 +175,7 @@
   <ItemGroup>
     <Content Include="Assets\Background\GameDetail-Pge.png" />
     <Content Include="Assets\Background\Menu-Animation.mp4" />
+    <Content Include="Assets\Background\SearchPage.jpg" />
     <Content Include="Assets\Background\SettingsPage-Animated.mp4" />
     <Content Include="Assets\Background\stub.txt" />
     <Content Include="Assets\empty.png" />
@@ -183,7 +184,6 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\Background\SearchPage.jpg" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
