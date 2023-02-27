@@ -46,11 +46,11 @@
                 <StackPanel Padding="0,0,0,0" Background="Transparent" XYFocusKeyboardNavigation="Enabled" Orientation="Horizontal" Height="249" Spacing="8" BringIntoViewRequested="StackPanel_BringIntoViewRequested">
                     <Border Margin="0,0,0,0" Padding="0,0,0,0" Width="6"></Border>
 
-                    <Button x:Name="ButtonPlay" Margin="0,4,0,0" Padding="0,2,0,2" Background="Transparent" CornerRadius="4,4,4,4" Width="180" VerticalAlignment="Top"
+                    <Button x:Name="ButtonPlay" Margin="0,4,0,0" Padding="0,2,0,2" Background="Transparent" BorderBrush="Transparent" CornerRadius="4,4,4,4" Width="174" VerticalAlignment="Top"
                             Click="ButtonPlay_Click" Height="Auto">
                         <Grid>
                             <TextBlock Text="Play" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"></TextBlock>
-                            <Image x:Name="ItemImage" Stretch="Uniform" Height="Auto" Width="180"  Margin="-2,-3,-2,-3" >
+                            <Image x:Name="ItemImage" Stretch="Uniform" Height="Auto" Width="176" Margin="-2,-3,-2,-3" >
                                 <Image.FocusVisualPrimaryBrush>
                                     <ImageBrush ImageSource="/Assets/empty.png"/>
                                 </Image.FocusVisualPrimaryBrush>
