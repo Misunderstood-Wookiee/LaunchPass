@@ -1,11 +1,11 @@
 # LaunchPass
-LaunchPass is a fork of [RetroPass](https://github.com/retropassdev/RetroPass) without this project would not exist.
-An highly themeable frontend for Xbox/Xbox Series Retro Gaming Emulators with many enhancements.
+LaunchPass is a Frontend and fork of [RetroPass](https://github.com/retropassdev/RetroPass)
+it is a highly customisable Frontend for Xbox One/Series Consoles for use with UWP Retro Gaming Emulators.
 ![Video](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/e55c515e3d5e9385093a306142e1ab50302d9f97/Docs/LaunchPass.webp)
 [![Showcase](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/173fc46d795b28ca138c553bbb393205f00be7d8/Docs/Screenshot%202023-04-22%20021815.png)](https://www.youtube.com/watch?v=Ox-JfUBo9as)
 
 
-This is made specifically for Xbox console and hopefully, should feel familiar to Xbox users right from the start with its Game Pass Ultimate vibe.
+This is made specifically for Xbox Consoles and hopefully will give users enough customisation options to make it feel their own. 
 ## Usage
 [Check out our Wiki for setup and usage intructions](https://github.com/Misunderstood-Wookiee/LaunchPass/wiki)
 
@@ -14,10 +14,10 @@ This is made specifically for Xbox console and hopefully, should feel familiar t
 
  - Xbox Only
  - Optimized for Gamepad Only
- - Zipped content supported only if RetroArch, RetriX or other supported cores/emulators support compressed archive format.
- - No Automatic Scrapper, you must use Launchbox (More Info Below)
+ - Zipped content supported only if RetroArch, Retrix Gold or other supported cores/emulators support compressed archive format.
+ - No Automatic Scrapper, you must use [LaunchBox](https://www.launchbox-app.com). for Setup (More Info Below)
  - EmulationStation support is discontinued sorry!
- - Video Background can be laggy in some-instances due to UWP limitations, we recommend 1080p-1440P resolutions and use images for Search & Game Details to reduce how many video play at the same time. (Series X may fair better in this regard)
+ - Video Background can cause lag in some-instances due to UWP limitations, we recommend 1080p resolutions and use a Image for the Game Details to reduce how many video play at the same time. (Series X may fair better in this regard)
   
 ## Installation
  1. [Download](../../releases/) latest LaunchPass.
@@ -49,5 +49,5 @@ This is made specifically for Xbox console and hopefully, should feel familiar t
 	- Add-AppDevPackage.ps1
 	- Install.ps1
 
-Feel free to fork the repository and further develop the app to your liking, but you must keep branding & give credit where due.
+Feel free to make PR`s or even fork the repository and develop the app to your liking, but please keep branding, give credit where it`s due & keep in line with the licence. 
 
