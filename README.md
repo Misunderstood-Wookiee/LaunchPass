@@ -49,5 +49,9 @@ This is made specifically for Xbox Consoles and hopefully will give users enough
 	- Add-AppDevPackage.ps1
 	- Install.ps1
 
-Feel free to make PR`s or even fork the repository and develop the app to your liking, but please keep branding, give credit where it`s due & keep in line with the licence. 
+# Licence
+***
+This work is licensed under a
+[General Public 2.0 License](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/Release/LICENSE.txt).
 
+Feel free to make pull requests or even fork the repository and develop the app to your liking, but please keep branding, and licence agreement intact, give credit where it is due people worked hard to bring you this.
