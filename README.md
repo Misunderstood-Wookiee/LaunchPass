@@ -11,7 +11,7 @@ This is made specifically for Xbox Consoles and hopefully will give users enough
 
 
 ## Limitations
-
+ - 2000 Total Titles Displayed in any given playlist/platform, 1000 optimal.
  - Xbox Only
  - Optimized for Gamepad Only
  - Zipped content supported only if RetroArch, Retrix Gold or other supported cores/emulators support compressed archive format.
