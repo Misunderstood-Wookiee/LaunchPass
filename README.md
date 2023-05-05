@@ -17,6 +17,8 @@ This is made specifically for Xbox Consoles and hopefully will give users enough
  - Zipped content supported only if RetroArch, Retrix Gold or other supported cores/emulators support compressed archive format.
  - No Automatic Scrapper, you must use [LaunchBox](https://www.launchbox-app.com). for Setup (More Info Below)
  - EmulationStation support is discontinued sorry!
+ - No Duckstation as UWP support got dropped by the original developer and we no plans to add it.
+ - No AetherSX2 support as Tahlreth has not implemented a URI Scheme for the UWP we hope it gets added in the future so we can stop supporting XBSX2!
  - Video Background can cause lag in some-instances due to UWP limitations, we recommend 1080p resolutions and use a Image for the Game Details to reduce how many video play at the same time. (Series X may fair better in this regard)
   
 ## Installation
