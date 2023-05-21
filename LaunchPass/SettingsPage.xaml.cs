@@ -1,4 +1,4 @@
-﻿using LaunchPass;
+using LaunchPass;
 using System;
 using Windows.ApplicationModel;
 using Windows.Storage;
@@ -281,7 +281,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
@@ -306,7 +306,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
@@ -324,7 +324,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
@@ -342,7 +342,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
@@ -360,7 +360,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
@@ -377,7 +377,7 @@ namespace RetroPass
             else
             {
                 // URI launch failed
-                var dialog = new MessageDialog("Sorry, something went wrong! Check your connection and make sure you have MS-Edge browser.");
+                var dialog = new MessageDialog("Sorry, something went wrong!");
                 await dialog.ShowAsync();
             }
         }
