@@ -28,7 +28,6 @@ This is made specifically for Xbox Consoles and hopefully will give users enough
 
 
 # Licence
-***
 This work is licensed under a
 [General Public 2.0 License](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/Release/LICENSE.txt).
 
