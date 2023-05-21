@@ -1,6 +1,5 @@
 # LaunchPass
-LaunchPass is a Frontend and fork of [RetroPass](https://github.com/retropassdev/RetroPass)
-it is a highly customisable Frontend for Xbox One/Series Consoles for use with UWP Retro Gaming Emulators.
+LaunchPass is a hightly customizable frontend and fork of [RetroPass](https://github.com/retropassdev/RetroPass) for Xbox.
 ![Video](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/e55c515e3d5e9385093a306142e1ab50302d9f97/Docs/LaunchPass.webp)
 [![Showcase](https://github.com/Misunderstood-Wookiee/LaunchPass/blob/173fc46d795b28ca138c553bbb393205f00be7d8/Docs/Screenshot%202023-04-22%20021815.png)](https://www.youtube.com/watch?v=Ox-JfUBo9as)
 
