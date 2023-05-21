@@ -69,8 +69,7 @@ namespace RetroPass
                     "Europe",
                     "United States",
                     "Australia",
-                    "Canada",
-                    "Box - Front" };
+                    "Canada" };
 
                 int currentRegionIndex = 100;
                 int prefferedFileIndex = -1;
