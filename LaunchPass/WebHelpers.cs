@@ -23,7 +23,7 @@ namespace LaunchPass
             var updateState = await CheckForNewUpdates();
             if (updateState.newUpdate)
             {
-                var messageDialog = new MessageDialog($"New update avialable ({updateState.updateVersion})\nDo you want to download it now?");
+                var messageDialog = new MessageDialog($"New update available ({updateState.updateVersion})\nDo you want to download it now?");
                 messageDialog.Commands.Add(new UICommand("Download", new UICommandInvokedHandler(CommandInvokedHandler)));
                 messageDialog.Commands.Add(new UICommand("Later"));
                 await messageDialog.ShowAsync();
