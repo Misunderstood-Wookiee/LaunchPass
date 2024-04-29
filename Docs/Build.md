@@ -1,8 +1,8 @@
 ## Build Project?
 
-1. Install Visual Studio 2019
+1. Install Visual Studio 2019 - Newer
 2. Get the latest source code from Main/Dev branch or [release](https://github.com/Misunderstood-Wookiee/LaunchPass/releases)
-3. Open **RetroPass.sln**
+3. Open **LaunchPass.sln**
 4. Under **Package.appxmanifest** -> **Packing**, create and choose a different Certificate if needed.
 5. Set **Configuration** to **Release**
 6. Set **Platform** to **x64**
