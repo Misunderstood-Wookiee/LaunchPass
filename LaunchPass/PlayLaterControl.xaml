@@ -17,6 +17,7 @@
         Padding="0,0,0,0"
         HorizontalAlignment="Right"
         VerticalAlignment="Bottom"
+        IsHitTestVisible="False"
         Visibility="Collapsed">
         <Border
             Background="Black"

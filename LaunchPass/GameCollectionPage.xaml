@@ -180,6 +180,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Visibility="Visible"
+            IsHitTestVisible="False"
              Grid.Row="0">
                 <Border
                 Background="Black"
