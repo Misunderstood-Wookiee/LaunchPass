@@ -16,11 +16,10 @@ namespace LaunchPass
             double[] rowHeights = new double[(Children.Count + imagesPerRow - 1) / imagesPerRow];
             int currentRow = 0;
             int imagesInCurrentRow = 0;
-
-            foreach (var child in Children)
+            foreach (var desiredSize in from child in Children
+                                        let desiredSize = child.DesiredSize
+                                        select desiredSize)
             {
-                var desiredSize = child.DesiredSize;
-
                 if (imagesInCurrentRow >= imagesPerRow || (x + desiredSize.Width) > finalSize.Width)
                 {
                     currentRow++;

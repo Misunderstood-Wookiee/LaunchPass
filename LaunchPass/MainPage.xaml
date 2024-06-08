@@ -285,7 +285,7 @@
             </StackPanel>
         </ScrollViewer>
         <local:PlayLaterControl x:Name="PlayLaterControl"></local:PlayLaterControl>
-        <Grid x:Name="OverlaySearch" Visibility="Visible" MaxWidth="300" Height="20" Margin="0,20,100,0" Padding="0,0,0,0" CornerRadius="4,4,4,4" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Grid x:Name="OverlaySearch" IsHitTestVisible="False" Visibility="Visible" MaxWidth="300" Height="20" Margin="0,20,100,0" Padding="0,0,0,0" CornerRadius="4,4,4,4" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Border Opacity="0.08" Background="White" CornerRadius="4"></Border>
         </Grid>
     </Grid>

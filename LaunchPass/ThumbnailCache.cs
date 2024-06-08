@@ -102,7 +102,7 @@ namespace RetroPass
         private int numImagesProcessed = 0;
         readonly object numTasks = new object();
         readonly object lockWriteThumb = new object();
-        List<string> writeThumb = new List<string>();
+        readonly List<string> writeThumb = new List<string>();
 
         public async Task<BitmapImage> GetImageFromPath(string Path)
         {
@@ -117,7 +117,6 @@ namespace RetroPass
 
         public async Task<BitmapImage> GetThumbnailAsync(StorageFile sourceFile)
         {
-            //if(dataSource != null)
             string path = Path.GetRelativePath(dataSource.rootFolder, sourceFile.Path);
             string destPath = "";
 
@@ -173,7 +172,7 @@ namespace RetroPass
                 return thumbnail;
             }
 
-            while (writeThumb.Contains(encodedName) == true)
+            while (writeThumb.Contains(encodedName))
             {
                 await Task.Delay(10);
             }
@@ -181,7 +180,7 @@ namespace RetroPass
             //prevent reading image if writing is in process
             lock (lockWriteThumb)
             {
-                if (writeThumb.Contains(encodedName) == false)
+                if (!writeThumb.Contains(encodedName))
                 {
                     writeThumb.Add(encodedName);
                 }
@@ -200,8 +199,6 @@ namespace RetroPass
                 {
                     cacheFolder = await StorageUtils.GetFolderFromPathAsync(destPath);
                 }
-
-                //StorageFolder destinationFolder = await StorageUtils.GetFolderFromPathAsync(destPath);
                 StorageFile outputFile = await CreateThumbnailFileAsync(cacheFolder, encodedName);
                 if (outputFile != null)
                 {
@@ -243,14 +240,14 @@ namespace RetroPass
                 return bitmapImage;
             }
 
-            while (writeThumb.Contains(fileName) == true)
+            while (writeThumb.Contains(fileName))
             {
                 await Task.Delay(10);
             }
 
             lock (lockWriteThumb)
             {
-                if (writeThumb.Contains(fileName) == false)
+                if (!writeThumb.Contains(fileName))
                 {
                     writeThumb.Add(fileName);
                 }

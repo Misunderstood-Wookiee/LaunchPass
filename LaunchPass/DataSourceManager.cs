@@ -332,10 +332,12 @@ namespace RetroPass
 
             //create a launchpass config file
             LaunchPassConfig configRemovable = await GetConfiguration(DataSourceLocation.Removable);
-            LaunchPassConfig config = new LaunchPassConfig();
-            config.relativePath = "./DataSource";
-            config.type = configRemovable.type;
-            config.retroarch = ds.LaunchPassConfig.retroarch;
+            LaunchPassConfig config = new LaunchPassConfig
+            {
+                relativePath = "./DataSource",
+                type = configRemovable.type,
+                retroarch = ds.LaunchPassConfig.retroarch
+            };
 
             //save the config file to removable storage
             StorageFile filename = await folderDest.CreateFileAsync("LaunchPass.xml", CreationCollisionOption.ReplaceExisting);
@@ -371,9 +373,9 @@ namespace RetroPass
                     dstAssetFolder = await destinationRootFolder.CreateFolderAsync(dstAssetRelativeDirectoryPath, CreationCollisionOption.OpenIfExists);
                 }
 
-                if (assetItem is StorageFile)
+                if (assetItem is StorageFile file)
                 {
-                    await CopyFileAsync((StorageFile)assetItem, dstAssetFolder, true);
+                    await CopyFileAsync(file, dstAssetFolder, true);
                 }
                 else if (assetItem is StorageFolder)
                 {
@@ -469,18 +471,19 @@ namespace RetroPass
                 foreach (StorageFolder rootFolder in folders)
                 {
                     //FIND LAUNCHBOX FOLDER TO RELATED RETROPASS FOLDER ON THE SAME REMOVABLE DEVICE
-                    StorageFolder launchBoxFolder = await rootFolder.TryGetItemAsync("LaunchBox") as StorageFolder;
 
-                    if (launchBoxFolder != null)
+                    if (await rootFolder.TryGetItemAsync("LaunchBox") is StorageFolder launchBoxFolder)
                     {
                         //Check storage root directory for LaunchPass.xml config file. (used for setting the data-source location)
                         IStorageItem configItem = await rootFolder.TryGetItemAsync("LaunchPass.xml");
                         if (configItem == null)
                         {
                             // In the event launchpass config file is not found, attempt too create file relative too launchbox data folder
-                            LaunchPassConfig config = new LaunchPassConfig();
-                            config.relativePath = "./LaunchBox";
-                            config.type = LaunchPassConfig.DataSourceType.LaunchBox;
+                            LaunchPassConfig config = new LaunchPassConfig
+                            {
+                                relativePath = "./LaunchBox",
+                                type = LaunchPassConfig.DataSourceType.LaunchBox
+                            };
 
                             //save the file to storage root directory
                             StorageFile filename = await rootFolder.CreateFileAsync("LaunchPass.xml", CreationCollisionOption.ReplaceExisting);
@@ -519,12 +522,13 @@ namespace RetroPass
                                 if (launchPassXMLfile != null)
                                 // Success, now generate the files contents.
                                 {
-                                    LaunchPassThemeSettings launchPassDefault = new LaunchPassThemeSettings();
-                                    launchPassDefault.Font = "Xbox.ttf";
-
-                                    launchPassDefault.Backgrounds = new Backgrounds()
+                                    LaunchPassThemeSettings launchPassDefault = new LaunchPassThemeSettings
                                     {
-                                        Background = new List<Background>()
+                                        Font = "Xbox.ttf",
+
+                                        Backgrounds = new Backgrounds()
+                                        {
+                                            Background = new List<Background>()
                                         {
                                          new Background() { Page = "MainPage", File = "LaunchPass-LP.mp4" },
                                          new Background() { Page = "GamePage", File = "LaunchPass-LP.mp4" },
@@ -533,9 +537,10 @@ namespace RetroPass
                                          new Background() { Page = "CustomizePage", File = "LaunchPass-LP.mp4" },
                                          new Background() { Page = "SettingsPage", File = "LaunchPass-LP.mp4" },
                                         }
-                                    };
+                                        },
 
-                                    launchPassDefault.BoxArtType = "Box - Front";
+                                        BoxArtType = "Box - Front"
+                                    };
 
                                     XmlSerializer x1 = new XmlSerializer(typeof(LaunchPassThemeSettings));
                                     using (TextWriter writer = new StringWriter())
@@ -549,10 +554,7 @@ namespace RetroPass
                             }
 
                             //CHECK WHETHER BACKGROUND IMAGES ARE AVAILABLE OR NOT
-                            StorageFolder bgFolder = await launchPassFolderCurrent.GetFolderAsync("Backgrounds");
-                            if (bgFolder == null)
-                                bgFolder = await launchPassFolderCurrent.CreateFolderAsync("Backgrounds");
-
+                            StorageFolder bgFolder = await launchPassFolderCurrent.GetFolderAsync("Backgrounds") ?? await launchPassFolderCurrent.CreateFolderAsync("Backgrounds");
                             if (((App)Application.Current).CurrentThemeSettings != null && ((App)Application.Current).CurrentThemeSettings.Backgrounds != null && ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background != null)
                             {
                                 foreach (var item in ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background)
@@ -581,10 +583,7 @@ namespace RetroPass
                                 }
                             }
 
-                            StorageFolder fontFolder = await launchPassFolderCurrent.GetFolderAsync("Fonts");
-                            if (fontFolder == null)
-                                fontFolder = await launchPassFolderCurrent.CreateFolderAsync("Fonts");
-
+                            StorageFolder fontFolder = await launchPassFolderCurrent.GetFolderAsync("Fonts") ?? await launchPassFolderCurrent.CreateFolderAsync("Fonts");
                             StorageFile fontStoreFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Fonts/Xbox.ttf"));
                             if (!await fontFolder.FileExistsAsync(fontStoreFile.Name))
                             {
@@ -650,12 +649,13 @@ namespace RetroPass
                             if (launchPassXMLfile != null)
                             // Success, now generate the files contents.
                             {
-                                LaunchPassThemeSettings launchPassDefault = new LaunchPassThemeSettings();
-                                launchPassDefault.Font = "Xbox.ttf";
-
-                                launchPassDefault.Backgrounds = new Backgrounds()
+                                LaunchPassThemeSettings launchPassDefault = new LaunchPassThemeSettings
                                 {
-                                    Background = new List<Background>()
+                                    Font = "Xbox.ttf",
+
+                                    Backgrounds = new Backgrounds()
+                                    {
+                                        Background = new List<Background>()
                                     {
                                          new Background() { Page = "MainPage", File = "LaunchPass-LP.mp4" },
                                          new Background() { Page = "GamePage", File = "LaunchPass-LP.mp4" },
@@ -664,9 +664,10 @@ namespace RetroPass
                                          new Background() { Page = "CustomizePage", File = "LaunchPass-LP.mp4" },
                                          new Background() { Page = "SettingsPage", File = "LaunchPass-LP.mp4" },
                                     }
-                                };
+                                    },
 
-                                launchPassDefault.BoxArtType = "Box - Front";
+                                    BoxArtType = "Box - Front"
+                                };
 
                                 XmlSerializer x = new XmlSerializer(typeof(LaunchPassThemeSettings));
                                 using (TextWriter writer = new StringWriter())

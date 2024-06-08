@@ -62,7 +62,7 @@ namespace RetroPass
             {
                 foreach (var item in playlist.PlaylistItems)
                 {
-                    item.bitmapImage = await item.game.GetImageThumbnailAsync();
+                    item.BitmapImage = await item.game.GetImageThumbnailAsync();
                 }
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
@@ -89,7 +89,7 @@ namespace RetroPass
                         PlayLaterControl.UpdatePlayLaterControl(pl, playlistPlayLater);
                         //if this is item from playlistPlayLater, then currentListView is playLate list view
                         //so set proper selected item in case of deletion
-                        if (pl.playlist == playlistPlayLater)
+                        if (pl.Playlist == playlistPlayLater)
                         {
                             UpdateNumGamesText(playlistPlayLater.PlaylistItems.Count);
                             PlatformGridView.SelectedIndex = Math.Min(lastIndex, playlistPlayLater.PlaylistItems.Count - 1);

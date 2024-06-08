@@ -12,10 +12,10 @@ namespace RetroPass
 {
     public class PlaylistPlayLater : Playlist
     {
-        private string fileName = "PlayLater.xml";
+        private readonly string fileName = "PlayLater.xml";
 
-        Dictionary<string, PlaylistItem> PlaylistItemsDict = new Dictionary<string, PlaylistItem>();
-        StorageFolder folder = ApplicationData.Current.LocalCacheFolder;
+        readonly Dictionary<string, PlaylistItem> PlaylistItemsDict = new Dictionary<string, PlaylistItem>();
+        readonly StorageFolder folder = ApplicationData.Current.LocalCacheFolder;
 
         public PlaylistPlayLater()
         {
@@ -42,9 +42,11 @@ namespace RetroPass
             }
             else
             {
-                PlaylistItem plItem = new PlaylistItem();
-                plItem.playlist = this;
-                plItem.game = playlistItem.game;
+                PlaylistItem plItem = new PlaylistItem
+                {
+                    Playlist = this,
+                    game = playlistItem.game
+                };
                 AddToGames(plItem);
             }
         }
@@ -56,8 +58,10 @@ namespace RetroPass
             XmlSerializer x = new XmlSerializer(typeof(PlaylistRetroPass));
             using (TextWriter writer = new StringWriter())
             {
-                var playlistRetroPass = new PlaylistRetroPass();
-                playlistRetroPass.games = PlaylistItems.Select(t => t.game).OfType<GameRetroPass>().ToList();
+                var playlistRetroPass = new PlaylistRetroPass
+                {
+                    games = PlaylistItems.Select(t => t.game).OfType<GameRetroPass>().ToList()
+                };
 
                 //platform paths must be relative when saving
                 foreach (var game in playlistRetroPass.games)
@@ -68,8 +72,6 @@ namespace RetroPass
                     game.GamePlatform.ScreenshotGameTitlePath = game.GamePlatform.ScreenshotGameTitlePath == "" ? "" : Path.GetRelativePath(game.DataRootFolder, game.GamePlatform.ScreenshotGameTitlePath);
                     game.GamePlatform.VideoPath = game.GamePlatform.VideoPath == "" ? "" : Path.GetRelativePath(game.DataRootFolder, game.GamePlatform.VideoPath);
                 }
-
-                //GameRetroPass[] games = PlaylistItems.Select(t => t.game).ToArray();
                 x.Serialize(writer, playlistRetroPass);
 
                 foreach (var game in playlistRetroPass.games)
@@ -170,8 +172,10 @@ namespace RetroPass
         {
             //need to convert game into GameRetroPass
             //this copies values from specific Game subclass to GameRetroPass
-            var game = new GameRetroPass(plItem.game);
-            game.GamePlatform = plItem.game.GamePlatform.Copy(); //keep copies of GamePlatform object, because it is manipulated on Save()
+            var game = new GameRetroPass(plItem.game)
+            {
+                GamePlatform = plItem.game.GamePlatform.Copy() //keep copies of GamePlatform object, because it is manipulated on Save()
+            };
 
             PlaylistItem playlistItem = AddPlaylistItem(game);
             PlaylistItemsDict.Add(PlaylistItemKey(playlistItem), playlistItem);

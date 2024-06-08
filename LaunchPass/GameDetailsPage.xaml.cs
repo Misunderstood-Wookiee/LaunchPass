@@ -224,7 +224,7 @@ namespace RetroPass
         public static async Task StartContent(PlaylistItem playlistItem)
         {
             var game = playlistItem.game;
-            playlistItem.playlist.SetLastPlayed(playlistItem);
+            playlistItem.Playlist.SetLastPlayed(playlistItem);
 
             //check if it exists
             try

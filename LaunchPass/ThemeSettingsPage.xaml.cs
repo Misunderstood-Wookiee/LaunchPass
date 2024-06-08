@@ -108,9 +108,7 @@ namespace LaunchPass
                 // Iterate through the devices to find LaunchBox and LaunchPass folders
                 foreach (StorageFolder rootFolder in folders)
                 {
-                    StorageFolder launchBoxFolder = await rootFolder.TryGetItemAsync("LaunchBox") as StorageFolder;
-
-                    if (launchBoxFolder != null)
+                    if (await rootFolder.TryGetItemAsync("LaunchBox") is StorageFolder launchBoxFolder)
                     {
                         launchPassFolderCurrent = await rootFolder.TryGetItemAsync("LaunchPass") as StorageFolder;
                         break;
@@ -154,7 +152,7 @@ namespace LaunchPass
                     List<Background> backgroundList = ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background;
 
                     // If the background list exists and is not empty, set the selected background for each page
-                    if (backgroundList != null && backgroundList.Count() != 0)
+                    if (backgroundList != null && backgroundList.Any())
                     {
                         MainPageCB.SelectedItem = backgroundList.Where(s => s.Page == "MainPage").Select(s => s.File).FirstOrDefault();
                         GamePageCB.SelectedItem = backgroundList.Where(s => s.Page == "GamePage").Select(s => s.File).FirstOrDefault();
@@ -205,8 +203,7 @@ namespace LaunchPass
             var files = new List<StorageFile>();
             try
             {
-                var folderNameStorageFolder = await rootFolder.TryGetItemAsync(subFolderName) as StorageFolder;
-                if (folderNameStorageFolder != null)
+                if (await rootFolder.TryGetItemAsync(subFolderName) is StorageFolder folderNameStorageFolder)
                 {
                     files.AddRange(await GetFilesInFolderAsync(folderNameStorageFolder, allowedExtensions));
                     // Check sub-folders for files
@@ -256,7 +253,7 @@ namespace LaunchPass
             return file;
         }
 
-        private async void btnApplyChanges_Click(object sender, RoutedEventArgs e)
+        private async void BtnApplyChanges_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -268,7 +265,7 @@ namespace LaunchPass
 
                     bool flag1 = ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background.FirstOrDefault(s => s.Page == "MainPage").File != Convert.ToString(MainPageCB.SelectedItem);
 
-                    if (((App)Application.Current).CurrentThemeSettings.Backgrounds.Background != null && ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background.Count() != 0)
+                    if (((App)Application.Current).CurrentThemeSettings.Backgrounds.Background != null && ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background.Any())
                     {
                         ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background.FirstOrDefault(s => s.Page == "MainPage").File = Convert.ToString(MainPageCB.SelectedItem);
                         ((App)Application.Current).CurrentThemeSettings.Backgrounds.Background.FirstOrDefault(s => s.Page == "GamePage").File = Convert.ToString(GamePageCB.SelectedItem);
@@ -339,7 +336,7 @@ namespace LaunchPass
             await settings_applied_msgBox.ShowAsync();
         }
 
-        private void toggleBoxFront_Checked(object sender, RoutedEventArgs e)
+        private void ToggleBoxFront_Checked(object sender, RoutedEventArgs e)
         {
             toggleBox3d.IsChecked = false;
             ToggleCartFront.IsChecked = false;
@@ -347,7 +344,7 @@ namespace LaunchPass
             ToggleFanartBackground.IsChecked = false;
         }
 
-        private void toggleBox3d_Checked(object sender, RoutedEventArgs e)
+        private void ToggleBox3d_Checked(object sender, RoutedEventArgs e)
         {
             toggleBoxFront.IsChecked = false;
             ToggleCartFront.IsChecked = false;
@@ -363,7 +360,7 @@ namespace LaunchPass
             ToggleFanartBackground.IsChecked = false;
         }
 
-        private void toggleClearLogo_Checked(object sender, RoutedEventArgs e)
+        private void ToggleClearLogo_Checked(object sender, RoutedEventArgs e)
         {
             toggleBoxFront.IsChecked = false;
             toggleBox3d.IsChecked = false;

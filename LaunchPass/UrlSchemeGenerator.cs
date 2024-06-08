@@ -6,8 +6,7 @@ namespace RetroPass
     {
         public static string GetUrl(Game game)
         {
-            string url = "";
-
+            string url;
             switch (game.GamePlatform.EmulatorType)
             {
                 case Platform.EEmulatorType.retroarch:
@@ -99,7 +98,8 @@ namespace RetroPass
                     break;
 
                 default:
-                    break;
+                    // Handle default case and throw an exception for unsupported emulator type.
+                    throw new InvalidOperationException("Unsupported emulator type!");
             }
 
             return url;

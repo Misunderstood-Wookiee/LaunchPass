@@ -76,7 +76,7 @@ namespace RetroPass
                         PlayLaterControl.UpdatePlayLaterControl(pl, dataSource.playlistPlayLater);
                         //if this is item from playlistPlayLater, then currentListView is playLater list view
                         //so set proper selected item in case of deletion
-                        if (pl.playlist == dataSource.playlistPlayLater)
+                        if (pl.Playlist == dataSource.playlistPlayLater)
                         {
                             currentListView.SelectedIndex = Math.Min(lastIndex, dataSource.playlistPlayLater.PlaylistItemsLandingPage.Count - 1);
                         }
