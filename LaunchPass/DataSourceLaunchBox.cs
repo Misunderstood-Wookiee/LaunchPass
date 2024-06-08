@@ -57,7 +57,7 @@ namespace RetroPass
             }
 
             VideoTitle = sb.ToString();
-            BoxFrontFileName = sb.ToString();// + "-";
+            BoxFrontFileName = sb.ToString();
             BoxFrontContentName = Path.GetFileNameWithoutExtension(ApplicationPath);
 
             //split multiple genre
@@ -161,14 +161,14 @@ namespace RetroPass
 
         public override List<string> GetAssets()
         {
-            List<string> assets = new List<string>();
-
-            //assets.Add("LaunchBox.exe");
-            assets.Add("Emulators.xml");
-            assets.Add("Data\\Emulators.xml");
-            assets.Add("Data\\Platforms.xml");
-            assets.Add("Data\\Platforms");
-            assets.Add("Data\\Playlists");
+            List<string> assets = new List<string>
+            {
+                "Emulators.xml",
+                "Data\\Emulators.xml",
+                "Data\\Platforms.xml",
+                "Data\\Platforms",
+                "Data\\Playlists"
+            };
 
             foreach (var platform in Platforms)
             {
@@ -208,7 +208,7 @@ namespace RetroPass
         {
             string coreName = "";
 
-            if (string.IsNullOrEmpty(commandLine) == false)
+            if (!string.IsNullOrEmpty(commandLine))
             {
                 coreName = Path.GetFileName(commandLine).Replace("\"", "");
             }
@@ -232,7 +232,7 @@ namespace RetroPass
 
                 if (emulatorPlatforms != null)
                 {
-                    emulatorPlatforms.RemoveAll(t => t.Default == false);
+                    emulatorPlatforms.RemoveAll(t => !t.Default);
 
                     foreach (var platform in emulatorPlatforms)
                     {
@@ -371,8 +371,10 @@ namespace RetroPass
 
             string coreName = ParseCommandLine(emulatorPlatform.CommandLine);
 
-            var platform = new Platform();
-            platform.Name = platformName;
+            var platform = new Platform
+            {
+                Name = platformName
+            };
             platform.SourceName = platform.Name;
             platform.SetEmulatorType(emulatorPlatform.EmulatorPath);
 
@@ -415,11 +417,13 @@ namespace RetroPass
 
             // GET PLAYLIST PLATFORM IMAGE
             StorageFolder platformImageFolder = await StorageUtils.GetFolderFromPathAsync(rootFolder + "\\Images\\Platforms\\" + platformName + "\\Clear Logo");
-            List<string> fileTypeFilter = new List<string>();
-            fileTypeFilter.Add(".jpg");
-            fileTypeFilter.Add(".jpeg");
-            fileTypeFilter.Add(".png");
-            fileTypeFilter.Add(".webp");
+            List<string> fileTypeFilter = new List<string>
+            {
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".webp"
+            };
             QueryOptions queryOptions = new QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
             StorageFileQueryResult queryResult = platformImageFolder.CreateFileQueryWithOptions(queryOptions);
             var files = await queryResult.GetFilesAsync();
@@ -445,7 +449,7 @@ namespace RetroPass
                     game.GamePlatform = platform;
 
                     //override core per game
-                    if (string.IsNullOrEmpty(game.CommandLine) == false)
+                    if (!string.IsNullOrEmpty(game.CommandLine))
                     {
                         game.CoreName = ParseCommandLine(game.CommandLine);
                     }
@@ -511,7 +515,7 @@ namespace RetroPass
                 {
                     PlatformsLaunchBox.Platform platformLaunchBox = playlist as PlatformsLaunchBox.Platform;
                     //load platform if it is not already loaded
-                    if (Platforms.Exists(p => p.Name == platformLaunchBox.Name) == false)
+                    if (!Platforms.Exists(p => p.Name == platformLaunchBox.Name))
                     {
                         //launchbox platforms are loaded as Playlists
                         playlistTmp = await LoadLaunchBoxPlatform(platformLaunchBox.Name, platformsLaunchBox, emulatorPlatforms, platformsFiles);
@@ -536,24 +540,28 @@ namespace RetroPass
                     foreach (string platformName in platformNames)
                     {
                         //If platform playlist is not already loaded, load before loading games from launchbox playlists
-                        if (Playlists.Exists(t => t.Name == platformName) == false)
+                        if (!Playlists.Exists(t => t.Name == platformName))
                         {
                             //if platform playlist is not loaded for some reason, games in the launchbox playlist will be skipped later
                             await LoadLaunchBoxPlatform(platformName, platformsLaunchBox, emulatorPlatforms, platformsFiles);
                         }
                     }
 
-                    playlistTmp = new Playlist();
-                    playlistTmp.Name = playlistLaunchBox._Playlist.Name;
+                    playlistTmp = new Playlist
+                    {
+                        Name = playlistLaunchBox._Playlist.Name
+                    };
                     SortedDictionary<string, Game> sortedGames = new SortedDictionary<string, Game>();
 
                     // GET PLAYLIST IMAGE
                     StorageFolder platformImageFolder = await StorageUtils.GetFolderFromPathAsync(rootFolder + "\\Images\\Playlists\\" + playlistTmp.Name);
-                    List<string> fileTypeFilter = new List<string>();
-                    fileTypeFilter.Add(".jpg");
-                    fileTypeFilter.Add(".jpeg");
-                    fileTypeFilter.Add(".png");
-                    fileTypeFilter.Add(".webp");
+                    List<string> fileTypeFilter = new List<string>
+                    {
+                        ".jpg",
+                        ".jpeg",
+                        ".png",
+                        ".webp"
+                    };
                     QueryOptions queryOptions = new QueryOptions(Windows.Storage.Search.CommonFileQuery.OrderByName, fileTypeFilter);
                     StorageFileQueryResult queryResult = platformImageFolder.CreateFileQueryWithOptions(queryOptions);
                     var files = await queryResult.GetFilesAsync();
@@ -589,7 +597,7 @@ namespace RetroPass
                     }
 
                     //show playlist only if there is at least one game
-                    if (string.IsNullOrEmpty(playlistTmp.Name) == false && playlistTmp.PlaylistItems.Count > 0)
+                    if (!string.IsNullOrEmpty(playlistTmp.Name) && playlistTmp.PlaylistItems.Count > 0)
                     {
                         playlistTmp.UpdateGamesLandingPage();
                         Playlists.Add(playlistTmp);

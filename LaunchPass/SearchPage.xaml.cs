@@ -202,7 +202,7 @@ namespace RetroPass
                 {
                     foreach (var item in searchResultList)
                     {
-                        item.bitmapImage = await item.game.GetImageThumbnailAsync();
+                        item.BitmapImage = await item.game.GetImageThumbnailAsync();
                     }
 
                     SearchGridView.ItemsSource = null;

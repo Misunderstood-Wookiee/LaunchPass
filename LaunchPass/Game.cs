@@ -53,13 +53,15 @@ namespace RetroPass
 
             if (string.IsNullOrEmpty(BoxFrontFilePath))
             {
-                QueryOptions options = new QueryOptions();
-                options.ApplicationSearchFilter =
+                QueryOptions options = new QueryOptions
+                {
+                    ApplicationSearchFilter =
                     "System.FileName:~\"" + BoxFrontFileName + ".???" + "\"" + " OR " +
                     "System.FileName:~\"" + BoxFrontFileName + "-*.???" + "\"" + " OR " +
                     "System.FileName:~\"" + BoxFrontContentName + ".???" + "\"" + " OR " +
-                    "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"";
-                options.FolderDepth = FolderDepth.Deep;
+                    "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"",
+                    FolderDepth = FolderDepth.Deep
+                };
                 StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(options);
 
                 IReadOnlyList<StorageFile> sortedFiles = await queryResult.GetFilesAsync();
@@ -126,7 +128,6 @@ namespace RetroPass
 
         public async Task<BitmapImage> GetImageThumbnailAsync()
         {
-            StorageFile ImageFile = null;
             StorageItemThumbnail thumbnail = null;
             //BitmapImage bitmapImage = null;
 
@@ -137,7 +138,7 @@ namespace RetroPass
                 return bitmapImage;
             }
 
-            if (thumbnail == null && string.IsNullOrEmpty(BoxFrontFileName) == false)
+            if (thumbnail == null && !string.IsNullOrEmpty(BoxFrontFileName))
             {
                 if (GamePlatform.BoxFrontFolder == null)
                 {
@@ -146,7 +147,7 @@ namespace RetroPass
 
                 StorageFolder folder = GamePlatform.BoxFrontFolder;
 
-                ImageFile = await FindImageThumbnailAsync(folder);
+                StorageFile ImageFile = await FindImageThumbnailAsync(folder);
                 //check if thumbs file exists
                 if (ImageFile != null)
                 {
@@ -163,7 +164,7 @@ namespace RetroPass
 
             Trace.TraceInformation("Game: GetMainImageAsync {0}", BoxFrontFilePath);
 
-            if (string.IsNullOrEmpty(BoxFrontFilePath) == false)
+            if (!string.IsNullOrEmpty(BoxFrontFilePath))
             {
                 var boxFrontFile = await StorageFile.GetFileFromPathAsync(BoxFrontFilePath);
                 using (IRandomAccessStream fileStream = await boxFrontFile.OpenAsync(Windows.Storage.FileAccessMode.Read))
@@ -199,14 +200,16 @@ namespace RetroPass
                 return null;
             }
 
-            QueryOptions options = new QueryOptions();
-            options.ApplicationSearchFilter =
+            QueryOptions options = new QueryOptions
+            {
+                ApplicationSearchFilter =
                 "System.FileName:~\"" + VideoTitle + ".???" + "\"" + " OR " +
                 "System.FileName:~\"" + VideoTitle + "-*.???" + "\"" + " OR " +
                 "System.FileName:~\"" + BoxFrontContentName + ".???" + "\"" + " OR " +
-                "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"";
+                "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"",
 
-            options.FolderDepth = FolderDepth.Deep;
+                FolderDepth = FolderDepth.Deep
+            };
             options.SetThumbnailPrefetch(ThumbnailMode.SingleItem, 100, ThumbnailOptions.ReturnOnlyIfCached);
             StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(options);
             IReadOnlyList<StorageFile> sortedFiles = await queryResult.GetFilesAsync();
@@ -225,15 +228,15 @@ namespace RetroPass
         {
             List<string> gameplayFolders = new List<string>();
 
-            if (string.IsNullOrEmpty(GamePlatform.ScreenshotGameTitlePath) == false)
+            if (!string.IsNullOrEmpty(GamePlatform.ScreenshotGameTitlePath))
             {
                 gameplayFolders.Add(GamePlatform.ScreenshotGameTitlePath);
             }
-            if (string.IsNullOrEmpty(GamePlatform.ScreenshotGameSelectPath) == false)
+            if (!string.IsNullOrEmpty(GamePlatform.ScreenshotGameSelectPath))
             {
                 gameplayFolders.Add(GamePlatform.ScreenshotGameSelectPath);
             }
-            if (string.IsNullOrEmpty(GamePlatform.ScreenshotGameplayPath) == false)
+            if (!string.IsNullOrEmpty(GamePlatform.ScreenshotGameplayPath))
             {
                 gameplayFolders.Add(GamePlatform.ScreenshotGameplayPath);
             }
@@ -242,13 +245,15 @@ namespace RetroPass
             {
                 //search for images for this game
                 StorageFolder folder = await StorageUtils.GetFolderFromPathAsync(gameplayFolder);
-                QueryOptions options = new QueryOptions();
-                options.ApplicationSearchFilter =
+                QueryOptions options = new QueryOptions
+                {
+                    ApplicationSearchFilter =
                     "System.FileName:~\"" + BoxFrontFileName + ".???" + "\"" + " OR " +
                     "System.FileName:~\"" + BoxFrontFileName + "-*.???" + "\"" + " OR " +
                     "System.FileName:~\"" + BoxFrontContentName + ".???" + "\"" + " OR " +
-                    "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"";
-                options.FolderDepth = FolderDepth.Deep;
+                    "System.FileName:~\"" + BoxFrontContentName + "-*.???" + "\"",
+                    FolderDepth = FolderDepth.Deep
+                };
                 StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(options);
 
                 IReadOnlyList<StorageFile> sortedFiles = await queryResult.GetFilesAsync();
@@ -272,9 +277,11 @@ namespace RetroPass
                         //bitmapImage.DecodePixelWidth = decodePixelWidth;
 
                         await bitmapImage.SetSourceAsync(fileStream);
-                        DetailImage dt = new DetailImage();
-                        dt.image = bitmapImage;
-                        dt.path = item.Path;
+                        DetailImage dt = new DetailImage
+                        {
+                            image = bitmapImage,
+                            path = item.Path
+                        };
                         imageList.Add(dt);
 
                         Trace.TraceInformation("Game: GetDetailsImages SUCCESS {0}", dt.path);

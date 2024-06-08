@@ -96,16 +96,16 @@
             </StackPanel>
 
             <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7" Text="SELECT YOUR BOX ART TYPE" Style="{StaticResource ThemeSettingTextblockStyle}" FontSize="20" Margin="55,19,-45,33" Grid.RowSpan="2" />
-            <ToggleButton x:Name="toggleBoxFront" Grid.Row="5" Grid.Column="0" Content="Box - Front" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="3" Margin="60,13,97,35" Grid.RowSpan="2" VerticalAlignment="Top" Checked="toggleBoxFront_Checked" />
-            <ToggleButton x:Name="toggleBox3d" Grid.Row="5" Grid.Column="2" Content="Box - 3D" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="60,13,99,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="toggleBox3d_Checked" />
+            <ToggleButton x:Name="toggleBoxFront" Grid.Row="5" Grid.Column="0" Content="Box - Front" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="3" Margin="60,13,97,35" Grid.RowSpan="2" VerticalAlignment="Top" Checked="ToggleBoxFront_Checked" />
+            <ToggleButton x:Name="toggleBox3d" Grid.Row="5" Grid.Column="2" Content="Box - 3D" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="60,13,99,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="ToggleBox3d_Checked" />
             <ToggleButton x:Name="ToggleCartFront" Grid.Row="5" Grid.Column="3" Content="Cart - Front" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="60,13,91,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="ToggleCartFront_Checked" />
-            <ToggleButton x:Name="toggleClearLogo" Grid.Row="5" Grid.Column="4" Content="Clear Logo" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="70,13,95,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="toggleClearLogo_Checked" />
+            <ToggleButton x:Name="toggleClearLogo" Grid.Row="5" Grid.Column="4" Content="Clear Logo" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="70,13,95,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="ToggleClearLogo_Checked" />
             <ToggleButton x:Name="ToggleFanartBackground" Grid.Row="5" Grid.Column="5" Content="Fanart - Background" Style="{StaticResource ThemeSettingToggleButtonStyle}" Grid.ColumnSpan="2" Margin="67,13,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Checked="ToggleFanartBackground_Checked" />
 
             <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="CHOOSE YOUR FONT" Style="{StaticResource ThemeSettingTextblockStyle}" FontSize="20" Margin="55,19,98,90" Grid.RowSpan="2" />
             <ComboBox x:Name="FontsCB" Grid.Row="7" Style="{StaticResource ThemeSettingComboBoxStyle}" Grid.ColumnSpan="3" Margin="60,37,100,0" />
 
-            <Button x:Name="btnApplyChanges" Grid.Row="7" Content="APPLY CHANGES" CornerRadius="4" FontFamily="{StaticResource ApplicationFonts}" FontSize="15" Background="#70000000" Margin="55,139,0,0" Click="btnApplyChanges_Click" Grid.ColumnSpan="3" RenderTransformOrigin="-0.027,0.729" Width="180" Height="35" VerticalAlignment="Top" />
+            <Button x:Name="btnApplyChanges" Grid.Row="7" Content="APPLY CHANGES" CornerRadius="4" FontFamily="{StaticResource ApplicationFonts}" FontSize="15" Background="#70000000" Margin="55,139,0,0" Click="BtnApplyChanges_Click" Grid.ColumnSpan="3" RenderTransformOrigin="-0.027,0.729" Width="180" Height="35" VerticalAlignment="Top" />
         </Grid>
 
         <Grid x:Name="OverlaySearch" Visibility="Visible" MaxWidth="300" Height="32" Margin="0,0,28,26" Padding="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Bottom">

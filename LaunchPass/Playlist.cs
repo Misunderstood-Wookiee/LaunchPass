@@ -12,10 +12,7 @@ namespace RetroPass
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyyChanged(string propertyname)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
         public string Name { get; set; }
 
@@ -37,9 +34,11 @@ namespace RetroPass
 
         public PlaylistItem AddPlaylistItem(Game game)
         {
-            PlaylistItem playlistItem = new PlaylistItem();
-            playlistItem.playlist = this;
-            playlistItem.game = game;
+            PlaylistItem playlistItem = new PlaylistItem
+            {
+                playlist = this,
+                game = game
+            };
 
             if (PlaylistItems.Any(p => p.game.Title == game.Title))
             {
@@ -59,7 +58,6 @@ namespace RetroPass
 
         public void UpdateGamesLandingPage()
         {
-            //ClearLandingPage();
 
             PlaylistItemsLandingPage.Clear();
 
@@ -70,7 +68,7 @@ namespace RetroPass
 
             string lastPlayedStr = (string)localSettings.Values["LastPlayed" + Name];
 
-            if (string.IsNullOrEmpty(lastPlayedStr) == false)
+            if (!string.IsNullOrEmpty(lastPlayedStr))
             {
                 string[] lastPlayed = lastPlayedStr.Split(";;;");
 
@@ -100,7 +98,7 @@ namespace RetroPass
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             string lastPlayedStr = (string)localSettings.Values["LastPlayed" + Name];
 
-            if (string.IsNullOrEmpty(lastPlayedStr) == false)
+            if (!string.IsNullOrEmpty(lastPlayedStr))
             {
                 lastPlayedGames.AddRange(lastPlayedStr.Split(";;;"));
                 lastPlayedGames.Insert(0, playlist.game.Title);

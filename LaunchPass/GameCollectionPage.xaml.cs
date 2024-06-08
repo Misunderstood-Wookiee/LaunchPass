@@ -62,7 +62,7 @@ namespace RetroPass
             {
                 foreach (var item in playlist.PlaylistItems)
                 {
-                    item.bitmapImage = await item.game.GetImageThumbnailAsync();
+                    item.BitmapImage = await item.game.GetImageThumbnailAsync();
                 }
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {

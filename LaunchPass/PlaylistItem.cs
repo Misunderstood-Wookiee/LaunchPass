@@ -9,17 +9,14 @@ namespace RetroPass
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyyChanged(string propertyname)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
-        public Playlist playlist { get; set; }
+        public Playlist Playlist { get; set; }
         public Game game;
 
         private BitmapImage image;
-        public BitmapImage bitmapImage 
+        public BitmapImage BitmapImage
         {
             get
             {
