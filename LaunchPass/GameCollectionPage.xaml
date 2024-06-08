@@ -45,7 +45,7 @@
                         x:Name="ItemImage"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                         Source="{x:Bind bitmapImage,Mode=OneWay}"
+                         Source="{x:Bind BitmapImage,Mode=OneWay}"
                         RelativePanel.AlignTopWithPanel="True"
                         Stretch="Uniform" />
                     <Border

@@ -36,7 +36,7 @@ namespace RetroPass
         {
             PlaylistItem playlistItem = new PlaylistItem
             {
-                playlist = this,
+                Playlist = this,
                 game = game
             };
 

@@ -51,7 +51,7 @@
                         <Image
                         x:Name="ItemImage"
                         Width="116"
-                            Source="{x:Bind bitmapImage}"
+                            Source="{x:Bind BitmapImage}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" RelativePanel.AlignTopWithPanel="True"
                         Stretch="Uniform"/>
